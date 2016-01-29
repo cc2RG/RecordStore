@@ -6,5 +6,7 @@ var Record = function(title, artist, price){
 
 
 Record.prototype = {
-  
+
 }
+
+module.exports = Record;
