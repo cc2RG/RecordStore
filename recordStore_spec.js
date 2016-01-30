@@ -23,5 +23,5 @@ describe('record store', function(){
     assert.equal(1,testStore.records.length);
     assert.equal("Sound of Silver", testStore.records[0].title)
   });
-  
+
 });

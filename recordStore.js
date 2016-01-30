@@ -8,6 +8,7 @@ var RecordStore = function(name,city,records,balance){
 RecordStore.prototype = {
   addRecord: function(record){
     var newRecord = record;
+    record.copies += 1;
     this.records.push(record);
   },
   removeRecord: function(record){
@@ -20,10 +21,12 @@ RecordStore.prototype = {
 
   },
   displayBalance: function(){
-    return ("£" + this.balance);
+    return ("£" + (this.balance));
   // convert this.balance to type string before addition
+  },
+  listRecords: function(){
+    // iterate through the records array and return the inventory
   }
-
 
 }
 
