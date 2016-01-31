@@ -34,6 +34,15 @@ RecordStore.prototype = {
   var prettyBalance = "£" + (this.balance.toString());
   return prettyBalance;  
   },
+  displayTotalValue: function(){
+  var stockValue = 0;
+  for(var i=0; i < this.records.length; i++){
+    stockValue += this.records[i].price;
+  }  
+    return "stock value :£ " + (stockValue.toString());
+    return "cash balance : " + (this.displayBalance());
+    return "total worth : " + (stockValue + this.balance).toString();
+  },  
   listRecords: function(){
    for(var i = 0; i < this.records.length; i++){
     console.log(this.records[i]);
@@ -44,9 +53,6 @@ RecordStore.prototype = {
 }
 
 
-var testStore = new RecordStore("test","Test",[],100.00);
-var testRecord = new Record("title","artist",[],12.00);
-testStore.addRecord(testRecord);
-testStore.listRecords();
+
 
 module.exports = RecordStore;
