@@ -15,5 +15,6 @@ describe('record', function(){
     var testStore = new RecordStore("Fopp","Glasgow",[],7000.00);
     testStore.addRecord(testRecord);
     assert.equal(1, testRecord.copies);
+    assert.equal(1, testStore.records[0].copies)
   });
 })

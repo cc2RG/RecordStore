@@ -1,3 +1,5 @@
+var Record = require('./record');
+
 var RecordStore = function(name,city,records,balance){
   this.name = name;
   this.city = city;
@@ -8,26 +10,43 @@ var RecordStore = function(name,city,records,balance){
 RecordStore.prototype = {
   addRecord: function(record){
     var newRecord = record;
-    record.copies += 1;
-    this.records.push(record);
-  },
-  removeRecord: function(record){
+    newRecord.copies +=1;
+    this.records.push(newRecord);
+    this.balance -= newRecord.price;
 
+  },
+  addCopy: function(record){
+    var newRecord = record;
+    newRecord.copies +=1;
+    this.balance -= newRecord.price;
+  
+  
   },
   sellRecord: function(record){
-
+    var soldRecord = record;
+    soldRecord.copies -= 1;
+    this.balance += soldRecord.price;
   },
-  changeBalance: function(){
+  changeBalance: function(amount){
 
   },
   displayBalance: function(){
-    return ("£" + (this.balance));
-  // convert this.balance to type string before addition
+  var prettyBalance = "£" + (this.balance.toString());
+  return prettyBalance;  
   },
   listRecords: function(){
-    // iterate through the records array and return the inventory
+   for(var i = 0; i < this.records.length; i++){
+    console.log(this.records[i]);
+   }
   }
+  
 
 }
+
+
+var testStore = new RecordStore("test","Test",[],100.00);
+var testRecord = new Record("title","artist",[],12.00);
+testStore.addRecord(testRecord);
+testStore.listRecords();
 
 module.exports = RecordStore;
