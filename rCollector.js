@@ -17,8 +17,8 @@ buyRecord: function(record, recordStore){
 sellRecord: function(record, recordStore){
  var newArray = _.pull(this.records, record);
  this.records = newArray;
- this.balance += record.price;
- recordStore.addRecord(record);
+ this.balance += (record.price * 0.75);
+ recordStore.addPreOwned(record);
 }
 
 

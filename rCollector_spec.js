@@ -19,7 +19,7 @@ describe('rCollector', function(){
     assert.equal(1,testCollector.records.length);
     assert.equal(488.01, testCollector.balance);
   });
-  it('should be able to sell a record and have its balance gain its value', function(){
+  it('should be able to sell a record and have its balance gain its value ,minus 15%', function(){
     var testRecord = new Record("Sound of Silver", "LCD Soundsystem",11.99);
     var testStore = new RecordStore("Grouchos","Dundee",[],1100.55);
     var testStoreTwo = new RecordStore("Tower Records", "Glasgow",[],900.00);
@@ -28,6 +28,6 @@ describe('rCollector', function(){
     testCollector.buyRecord(testRecord,testStore);
     testCollector.sellRecord(testRecord,testStoreTwo);
     assert.equal(0, testCollector.records.length);
-    assert.equal(500, testCollector.balance);
+    assert.equal(497.0025, testCollector.balance);
   });
 });

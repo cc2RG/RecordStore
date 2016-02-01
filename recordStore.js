@@ -5,6 +5,7 @@ var RecordStore = function(name,city,records,balance){
   this.city = city;
   this.records = [];
   this.balance = balance;
+  this.preOwnedRecords = [];
 }
 
 RecordStore.prototype = {
@@ -19,9 +20,12 @@ RecordStore.prototype = {
     var newRecord = record;
     newRecord.copies +=1;
     this.balance -= newRecord.price;
-  
-  
   },
+  addPreOwned: function(record){
+    var newRecord = record;
+    newRecord.copies +=1;
+    this.preOwnedRecords.push(newRecord);
+  },  
   sellRecord: function(record){
     var soldRecord = record;
     soldRecord.copies -= 1;
@@ -37,11 +41,15 @@ RecordStore.prototype = {
   displayTotalValue: function(){
   var stockValue = 0;
   for(var i=0; i < this.records.length; i++){
+    if(this.records[i].copies > 0){
+     stockValue += (this.records[i].price * this.records[i].copies);
+    }else{ 
     stockValue += this.records[i].price;
+    }
   }  
-    return "stock value :£ " + (stockValue.toString());
-    return "cash balance : " + (this.displayBalance());
-    return "total worth : " + (stockValue + this.balance).toString();
+    console.log("stock value :£ " + (stockValue.toString()));
+    console.log("cash balance : " + (this.displayBalance()));
+    console.log("total worth :£ " + (stockValue + this.balance).toString());
   },  
   listRecords: function(){
    for(var i = 0; i < this.records.length; i++){
@@ -51,8 +59,12 @@ RecordStore.prototype = {
   
 
 }
-
-
-
+testRecord = new Record("Ok Computer","Radiohead",6.88);
+testRecord2 = new Record("Geogaddi","Boards of Canada",12.34);
+testStore = new RecordStore("Fopp","Glasgow",[],1000.00);
+testStore.addRecord(testRecord);
+testStore.addRecord(testRecord2);
+testStore.addCopy(testRecord2);
+testStore.displayTotalValue();
 
 module.exports = RecordStore;
